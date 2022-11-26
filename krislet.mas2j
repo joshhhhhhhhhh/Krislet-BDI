@@ -1,0 +1,6 @@
+MAS krislet {
+
+    infrastructure: Local
+
+    agents: sample_agent;
+}

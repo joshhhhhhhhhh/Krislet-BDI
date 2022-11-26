@@ -32,3 +32,6 @@ replay_pid*
 .idea/
 *.iml
 /target/
+
+# Jason outputs
+bin/
