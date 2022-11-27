@@ -8,4 +8,4 @@
 
 /* Plans */
 
-+!start : true <- .print("\n\n\nhello world.").
++!start : true <- turn(10); dash(10); kick(50.0, 100.0); !start.
