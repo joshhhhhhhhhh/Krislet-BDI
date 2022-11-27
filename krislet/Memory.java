@@ -6,7 +6,7 @@
 
 package krislet;
 
-class Memory 
+public class Memory
 {
     //---------------------------------------------------------------------------
     // This constructor:
