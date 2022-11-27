@@ -10,6 +10,8 @@
 //  Modified by:  Edgar Acosta
 //  Date:         March 4, 2008
 
+package krislet;
+
 //***************************************************************************
 //
 //	This is base class for different classese with visual information

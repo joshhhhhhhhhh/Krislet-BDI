@@ -8,6 +8,8 @@
 //    Modified by:      Edgar Acosta
 //    Date:             March 4, 2008
 
+package krislet;
+
 import java.lang.Math;
 import java.util.regex.*;
 
