@@ -241,9 +241,11 @@ public class Krislet implements Runnable
 	return new String(buffer);
     }
 
-				
-								 
-    //===========================================================================
+	public Memory getMemory() {
+		return m_memory;
+	}
+
+	//===========================================================================
     // Private members
     // class members
     private DatagramSocket	m_socket;		// Socket to communicate with server

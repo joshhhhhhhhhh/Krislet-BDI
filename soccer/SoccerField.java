@@ -1,13 +1,15 @@
 package soccer;
 
 import jason.NoValueException;
-import jason.asSyntax.NumberTerm;
-import jason.asSyntax.Structure;
+import jason.asSyntax.*;
 import jason.environment.Environment;
 import krislet.Krislet;
+import krislet.Memory;
+import krislet.ObjectInfo;
 
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class SoccerField extends Environment {
@@ -41,6 +43,29 @@ public class SoccerField extends Environment {
         for (Thread thread : this.threads.values()) {
             thread.start();
         }
+    }
+
+    @Override
+    public Collection<Literal> getPercepts(String agName) {
+        // Hack to disable the percept caching mechanism. TODO: Is there a better way?
+        Literal l = Literal.parseLiteral("upToDate");
+        addPercept(agName, l);
+        removePercept(agName, l);
+
+        Collection<Literal> p = super.getPercepts(agName);
+
+        Krislet krislet = getKrisletForAgentName(agName);
+        Memory memory = krislet.getMemory();
+
+        ObjectInfo ball = memory.getObject("ball");
+        if (ball == null) {
+            p.add(Literal.parseLiteral("~ball"));
+        } else {
+            p.add(new LiteralImpl("ball")
+                    .addTerms(new NumberTermImpl(ball.m_direction), new NumberTermImpl(ball.m_distance)));
+        }
+
+        return p;
     }
 
     @Override
