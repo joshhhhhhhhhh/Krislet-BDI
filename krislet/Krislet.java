@@ -24,6 +24,7 @@ import java.util.regex.*;
 //***************************************************************************
 public class Krislet implements Runnable
 {
+	public char side;
     //---------------------------------------------------------------------------
     // This constructor opens socket for  connection with server
     public Krislet(String team) throws SocketException, UnknownHostException {
@@ -34,6 +35,7 @@ public class Krislet implements Runnable
 	m_memory = new Memory();
 	m_playing = true;
 	m_timeOver = false;
+	side = '-';
     }
 																 
     //---------------------------------------------------------------------------
@@ -143,7 +145,7 @@ public class Krislet implements Runnable
 		throw new IOException(message);
 	    }
 
-	char side = m.group(1).charAt(0);
+	side = m.group(1).charAt(0);
 	int number = Integer.parseInt(m.group(2));
 	String playMode = m.group(3);
     }
