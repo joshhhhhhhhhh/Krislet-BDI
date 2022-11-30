@@ -65,6 +65,20 @@ public class SoccerField extends Environment {
                     .addTerms(new NumberTermImpl(ball.m_direction), new NumberTermImpl(ball.m_distance)));
         }
 
+        if(krislet.side == 'r' || krislet.side == 'l'){
+            ObjectInfo enemyGoal = memory.getObject("goal " + (krislet.side == 'r' ? 'l' : 'r'));
+            if (enemyGoal == null) {
+                p.add(Literal.parseLiteral("~enemyGoal"));
+                System.out.println("ENEMY GOAL REMOVED");
+            } else {
+                p.add(new LiteralImpl("enemyGoal")
+                        .addTerms(new NumberTermImpl(enemyGoal.m_direction), new NumberTermImpl(enemyGoal.m_distance)));
+                System.out.println("ENEMY GOAL ADDED");
+            }
+
+        }
+
+
         return p;
     }
 
