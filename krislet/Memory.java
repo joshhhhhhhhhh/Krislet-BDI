@@ -4,7 +4,9 @@
 //	Date:			1997/04/28
 //
 
-class Memory 
+package krislet;
+
+public class Memory
 {
     //---------------------------------------------------------------------------
     // This constructor:

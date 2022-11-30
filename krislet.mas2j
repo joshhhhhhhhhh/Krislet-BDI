@@ -1,0 +1,16 @@
+MAS krislet {
+    infrastructure: Local
+
+    // The first parameter (c) is the number of agents on team Carleton,
+    // The second parameter (u) is the number of agents on team University.
+    environment: soccer.SoccerField(1, 1)
+
+    // The number after "player_" is the ID of the agent. There must be
+    // exactly c + u agents defined, and an agent for every integer in
+    // [1, c+u].The agents with IDs [1, c] will be on team Carleton. The agents
+    // with IDs (c, c+u] will be on team University. The second token in each
+    // agent is the agent definition file (.asl) that the agent will use.
+    agents:
+        player_1 sample_agent;
+        player_2 sample_agent;
+}

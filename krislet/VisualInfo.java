@@ -16,6 +16,8 @@
 //  Modified by:	Edgar Acosta
 //  Date:		March 5, 2008
 
+package krislet;
+
 import java.io.*;
 import java.util.*;
 import java.util.regex.*;
@@ -93,7 +95,7 @@ class VisualInfo
 	m_objects.clear();
 	//Parse all the message, and obtain the three main parts
 	//(message type, time, and Object Info)
-	Pattern pattern = Pattern.compile("^\\((\\w+?)\\s(\\d+?)\\s(.*)\\).*");
+	Pattern pattern = Pattern.compile("^\\((\\w+?)\\s(\\d+?)(?:\\s(.*))?\\).*");
 	Matcher matcher = pattern.matcher(m_message);
 	if(!matcher.matches())
 	    {
@@ -102,6 +104,9 @@ class VisualInfo
 	m_type = matcher.group(1);
 	m_time = Integer.parseInt(matcher.group(2));
 	m_objectsString = matcher.group(3);
+	if (m_objectsString == null) {
+		return;
+	}
 	//Don't parse information if it's not 'see' information
 	if(m_type.compareTo("see") != 0)
 	    return;
