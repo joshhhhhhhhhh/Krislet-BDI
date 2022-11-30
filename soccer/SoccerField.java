@@ -69,11 +69,9 @@ public class SoccerField extends Environment {
             ObjectInfo enemyGoal = memory.getObject("goal " + (krislet.side == 'r' ? 'l' : 'r'));
             if (enemyGoal == null) {
                 p.add(Literal.parseLiteral("~enemyGoal"));
-                System.out.println("ENEMY GOAL REMOVED");
             } else {
                 p.add(new LiteralImpl("enemyGoal")
                         .addTerms(new NumberTermImpl(enemyGoal.m_direction), new NumberTermImpl(enemyGoal.m_distance)));
-                System.out.println("ENEMY GOAL ADDED");
             }
 
         }
