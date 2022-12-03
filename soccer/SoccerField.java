@@ -66,6 +66,16 @@ public class SoccerField extends Environment {
         }
 
         if(krislet.side == 'r' || krislet.side == 'l'){
+            // Own team's goal percept
+            ObjectInfo selfGoal = memory.getObject("goal " + (krislet.side == 'r' ? 'r' : 'l'));
+            if (selfGoal == null) {
+                p.add(Literal.parseLiteral(("~selfGoal")));
+            } else {
+                p.add(new LiteralImpl("selfGoal")
+                        .addTerms(new NumberTermImpl(selfGoal.m_direction), new NumberTermImpl(selfGoal.m_distance)));
+            }
+
+            // Enemy goal percept
             ObjectInfo enemyGoal = memory.getObject("goal " + (krislet.side == 'r' ? 'l' : 'r'));
             if (enemyGoal == null) {
                 p.add(Literal.parseLiteral("~enemyGoal"));
