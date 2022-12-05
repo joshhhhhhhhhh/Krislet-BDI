@@ -66,7 +66,7 @@ public class SoccerField extends Environment {
         } else {
             p.add(new LiteralImpl("ball")
                     .addTerms(new NumberTermImpl(ball.m_direction), new NumberTermImpl(ball.m_distance)));
-            if(abs(ball.m_direction) < 1){
+            if(abs(ball.m_direction) < 1.5){
                 p.add(new LiteralImpl("facingBall"));
             } else {
                 p.add(new LiteralImpl("~facingBall"));
@@ -90,10 +90,10 @@ public class SoccerField extends Environment {
             } else {
                 p.add(new LiteralImpl("enemyGoal")
                         .addTerms(new NumberTermImpl(enemyGoal.m_direction), new NumberTermImpl(enemyGoal.m_distance)));
-                if(abs(enemyGoal.m_direction) < 0.1){
-                    p.add(new LiteralImpl("facingGoal"));
+                if(abs(enemyGoal.m_direction) < 3){
+                    p.add(new LiteralImpl("facingEnemyGoal"));
                 } else {
-                    p.add(new LiteralImpl("~facingGoal"));
+                    p.add(new LiteralImpl("~facingEnemyGoal"));
                 }
             }
 
@@ -123,16 +123,13 @@ public class SoccerField extends Environment {
                 return true;
             } else if (functor.equals("dash")) {
                 double power = ((NumberTerm) act.getTerm(0)).solve();
-
                 krislet.dash(power);
-                waitSimulatorStep();
                 return true;
             } else if (functor.equals("kick")) {
                 double power = ((NumberTerm) act.getTerm(0)).solve();
                 double direction = ((NumberTerm) act.getTerm(1)).solve();
 
                 krislet.kick(power, direction);
-                waitSimulatorStep();
                 return true;
             }
         } catch (NoValueException e) {

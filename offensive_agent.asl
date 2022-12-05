@@ -2,39 +2,35 @@
 
 /* Initial beliefs and rules */
 atBall :- ball(X, Y) & Y < 0.5.
-/* Initial goals */
+ballNear :- ball(X, Y) & Y < 8.
 
+/* Initial goals */
 !findBall.
 
 /* Plans */
-//After shooting on goal, find the ball
-//+!shotOnGoal : true <- !findBall.
-//When I have possesion and am far from goal, dash towards goal
-//+!setupShot : enemyGoal(X, Y) & Y>=30 <- kick(5, X); !runToBall.
-//When I have possession and am close to goal, kick ball to goal
-//+!setupShot : enemyGoal(X, Y) & Y<30 <- kick(50, X+0.5); !shotOnGoal.
+//Finding the goal, kicking in its direction if we are facing it.
++!findGoal : ~enemyGoal <- turn(15); !!findGoal.
++!findGoal : enemyGoal(X, Y) & facingEnemyGoal <- kick(200, X); !findBall.
++!findGoal : enemyGoal(X, Y) <- turn(X); !!findGoal.
 
-//+!setupShot : ~enemyGoal <- !findGoal.
-//+!setupShot : not atBall <- !runToBall.
+//Check to see if we are close to the ball
++?closeToBall : ball(X, Y) & atBall <- !findGoal.
++?closeToBall : ball(X, Y) <- !runToBall.
++?closeToBall : ~ball <- !findBall.
 
-//When I have possession and cannot see the goal, turn until I see it
-+?atBall : enemyGoal(X, Y) <- kick(50, X); !findBall.
-+?atBall : ~enemyGoal <- turn(10); ?atBall.
-//When I have no possession, run to ball but stay within offensive range
-
-+!runToBall : facingBall & ball(X, Y) <- dash(Y); !runToBall; ?atBall.
-+!runToBall : ball(X, Y) <- !findBall.
+//Run to the ball if we see it
++!runToBall : ball(X, Y) & not ballNear <- turn(X); dash(Y*20); ?closeToBall.//; ?atBall.
++!runToBall : ball(X, Y) <- turn(X); dash(Y*8); ?closeToBall.//; ?atBall.
 +!runToBall : ~ball <- !findBall.
 
-+facingBall : ball(X, Y) <- dash(Y); !runToBall; ?atBall.
-+facingBall : ~ball <- !findBall.
-//+facingBall.
-
-+!findBall : facingBall & ball(X, Y) <- dash(Y); !runToBall; ?atBall.
-+!findBall : ball(X, Y) <- turn(X); !findBall. 
-+~ball <- !findBall.
-+!findBall : ~ball <- turn(10); !findBall.
-+!findBall : true <- !findBall.
+//Find the ball
++!findBall : facingBall & ball(X, Y) <- !runToBall.
++!findBall : ball(X, Y) <- turn(X); !!findBall. 
++!findBall : ~ball <- turn(15); !!findBall.
+//The following is required because at te start the ball may
+// not be initialized. After getting out of here, the ball being
+// visible or not visible will always be in the KB.
++!findBall : true <- !!findBall.
 
 
 //+!start : true <- turn(10); dash(10); kick(50.0, 100.0); !start.
