@@ -95,7 +95,7 @@ public class SoccerField extends Environment {
 
     private void waitSimulatorStep() {
         try {
-            Thread.sleep(2 * SoccerParams.simulator_step);
+            Thread.sleep(SoccerParams.simulator_step);
         } catch (InterruptedException ignored) { }
     }
 
@@ -114,12 +114,14 @@ public class SoccerField extends Environment {
             } else if (functor.equals("dash")) {
                 double power = ((NumberTerm) act.getTerm(0)).solve();
                 krislet.dash(power);
+                waitSimulatorStep();
                 return true;
             } else if (functor.equals("kick")) {
                 double power = ((NumberTerm) act.getTerm(0)).solve();
                 double direction = ((NumberTerm) act.getTerm(1)).solve();
 
                 krislet.kick(power, direction);
+                waitSimulatorStep();
                 return true;
             }
         } catch (NoValueException e) {
