@@ -66,11 +66,6 @@ public class SoccerField extends Environment {
         } else {
             p.add(new LiteralImpl("ball")
                     .addTerms(new NumberTermImpl(ball.m_direction), new NumberTermImpl(ball.m_distance)));
-            if(abs(ball.m_direction) < 1.5){
-                p.add(new LiteralImpl("facingBall"));
-            } else {
-                p.add(new LiteralImpl("~facingBall"));
-            }
         }
 
         if(krislet.side == 'r' || krislet.side == 'l'){
@@ -90,11 +85,6 @@ public class SoccerField extends Environment {
             } else {
                 p.add(new LiteralImpl("enemyGoal")
                         .addTerms(new NumberTermImpl(enemyGoal.m_direction), new NumberTermImpl(enemyGoal.m_distance)));
-                if(abs(enemyGoal.m_direction) < 3){
-                    p.add(new LiteralImpl("facingEnemyGoal"));
-                } else {
-                    p.add(new LiteralImpl("~facingEnemyGoal"));
-                }
             }
 
         }
