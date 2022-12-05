@@ -13,8 +13,6 @@ import java.net.UnknownHostException;
 import java.util.Collection;
 import java.util.HashMap;
 
-import static java.lang.Math.abs;
-
 public class SoccerField extends Environment {
     private final HashMap<Integer, Krislet> krislets;
     private final HashMap<Integer, Thread> threads;
@@ -113,6 +111,7 @@ public class SoccerField extends Environment {
                 return true;
             } else if (functor.equals("dash")) {
                 double power = ((NumberTerm) act.getTerm(0)).solve();
+
                 krislet.dash(power);
                 waitSimulatorStep();
                 return true;
