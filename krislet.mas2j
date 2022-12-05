@@ -11,6 +11,6 @@ MAS krislet {
     // with IDs (c, c+u] will be on team University. The second token in each
     // agent is the agent definition file (.asl) that the agent will use.
     agents:
-        player_1 sample_agent;
-        player_2 sample_agent;
+        player_1 offensive_agent;
+        player_2 offensive_agent;
 }
