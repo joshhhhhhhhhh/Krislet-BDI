@@ -3,10 +3,7 @@ package soccer;
 import jason.NoValueException;
 import jason.asSyntax.*;
 import jason.environment.Environment;
-import krislet.Krislet;
-import krislet.Memory;
-import krislet.ObjectInfo;
-import krislet.SoccerParams;
+import krislet.*;
 
 import java.net.SocketException;
 import java.net.UnknownHostException;
@@ -87,6 +84,19 @@ public class SoccerField extends Environment {
 
         }
 
+        PlayerInfo player = (PlayerInfo) memory.getObject("player");
+        if (player == null) {
+            p.add(Literal.parseLiteral("~teammate"));
+        } else {
+            String p_team = player.getTeamName();
+            String m_team = krislet.getTeamName();
+            if(p_team.equals(m_team)) {
+                p.add(new LiteralImpl("teammate")
+                        .addTerms(new NumberTermImpl(player.m_direction), new NumberTermImpl(player.m_distance)));
+            } else {
+                p.add(Literal.parseLiteral("~teammate"));
+            }
+        }
 
         return p;
     }
