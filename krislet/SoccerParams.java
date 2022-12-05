@@ -6,8 +6,8 @@
 
 package krislet;
 
-class SoccerParams 
+public class SoccerParams
 {
-	final static int	simulator_step = 100;
+	public final static int	simulator_step = 100;
 }
 

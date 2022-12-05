@@ -6,6 +6,7 @@ import jason.environment.Environment;
 import krislet.Krislet;
 import krislet.Memory;
 import krislet.ObjectInfo;
+import krislet.SoccerParams;
 
 import java.net.SocketException;
 import java.net.UnknownHostException;
@@ -90,6 +91,12 @@ public class SoccerField extends Environment {
         return p;
     }
 
+    private void waitSimulatorStep() {
+        try {
+            Thread.sleep(2 * SoccerParams.simulator_step);
+        } catch (InterruptedException ignored) { }
+    }
+
     @Override
     public boolean executeAction(String agName, Structure act) {
         Krislet krislet = getKrisletForAgentName(agName);
@@ -100,17 +107,20 @@ public class SoccerField extends Environment {
                 double moment = ((NumberTerm) act.getTerm(0)).solve();
 
                 krislet.turn(moment);
+                waitSimulatorStep();
                 return true;
             } else if (functor.equals("dash")) {
                 double power = ((NumberTerm) act.getTerm(0)).solve();
 
                 krislet.dash(power);
+                waitSimulatorStep();
                 return true;
             } else if (functor.equals("kick")) {
                 double power = ((NumberTerm) act.getTerm(0)).solve();
                 double direction = ((NumberTerm) act.getTerm(1)).solve();
 
                 krislet.kick(power, direction);
+                waitSimulatorStep();
                 return true;
             }
         } catch (NoValueException e) {
