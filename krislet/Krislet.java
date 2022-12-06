@@ -25,6 +25,7 @@ import java.util.regex.*;
 public class Krislet implements Runnable
 {
 	public char side;
+	public String playMode;
     //---------------------------------------------------------------------------
     // This constructor opens socket for  connection with server
     public Krislet(String team) throws SocketException, UnknownHostException {
@@ -37,7 +38,7 @@ public class Krislet implements Runnable
 	m_timeOver = false;
 	side = '-';
     }
-																 
+
     //---------------------------------------------------------------------------
     // This destructor closes socket to server
 	protected void finalize()
@@ -64,6 +65,10 @@ public class Krislet implements Runnable
 		m_socket.receive(packet);
 		parseInitCommand(new String(buffer));
 		m_port = packet.getPort();
+
+		if (Pattern.matches("^before_kick_off.*", this.playMode)) {
+			this.move(30, 30);
+		}
 
 		// Now we should be connected to the server
 		// and we know side, player number and play mode
@@ -139,6 +144,7 @@ public class Krislet implements Runnable
     protected void parseInitCommand(String message)
 	throws IOException
     {
+		System.out.println(message);
 	Matcher m = Pattern.compile("^\\(init\\s(\\w)\\s(\\d{1,2})\\s(\\w+?)\\).*$").matcher(message);
 	if(!m.matches())
 	    {
@@ -147,7 +153,7 @@ public class Krislet implements Runnable
 
 	side = m.group(1).charAt(0);
 	int number = Integer.parseInt(m.group(2));
-	String playMode = m.group(3);
+	playMode = m.group(3);
     }
 
 
@@ -166,7 +172,7 @@ public class Krislet implements Runnable
     private void parseSensorInformation(String message)
 	throws IOException
     {
-	// First check kind of information		
+	// First check kind of information
 	Matcher m=message_pattern.matcher(message);
 	if(!m.matches())
 	    {
@@ -229,13 +235,13 @@ public class Krislet implements Runnable
     //---------------------------------------------------------------------------
 
     // This function waits for new message from server
-    private String receive() 
+    private String receive()
     {
 	byte[] buffer = new byte[MSG_SIZE];
 	DatagramPacket packet = new DatagramPacket(buffer, MSG_SIZE);
 	try{
 	    m_socket.receive(packet);
-	}catch(SocketException e){ 
+	}catch(SocketException e){
 	    System.out.println("shutting down...");
 	}catch(IOException e){
 	    System.err.println("socket receiving error " + e);
