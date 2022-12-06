@@ -93,7 +93,7 @@ public class SoccerField extends Environment {
 
     private void waitSimulatorStep() {
         try {
-            Thread.sleep(2 * SoccerParams.simulator_step);
+            Thread.sleep(SoccerParams.simulator_step);
         } catch (InterruptedException ignored) { }
     }
 
