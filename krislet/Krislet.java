@@ -269,7 +269,7 @@ public class Krislet implements Runnable
     // constants
     private static final int	MSG_SIZE = 4096;	// Size of socket buffer
 
-	public String getTeamName() {
-		return this.m_team;
-	}
+    public String getTeamName() {
+        return this.m_team;
+    }
 }
