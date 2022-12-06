@@ -29,7 +29,7 @@ atNet :- selfGoal(DIR, DIST) & DIST < 3.0.
 // Go to the ball; if ball not seen, find it; if ball is "close", move towards; if at ball, find enemy goal
 +!goToBall : ~ball <- !findBall.
 +!goToBall : ball(DIR,DIST) & atBall <- !findEnemyGoal.
-+!goToBall : ball(DIR,DIST) & ballClose <- dash(80); !!goToBall.
++!goToBall : ball(DIR,DIST) & ballClose <- turn(DIR); dash(80); !!goToBall.
 +!goToBall : ball(DIR,DIST) <- !!goToBall.
 
 // Find enemy goal and kick towards
