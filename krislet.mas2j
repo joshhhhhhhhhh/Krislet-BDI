@@ -3,7 +3,7 @@ MAS krislet {
 
     // The first parameter (c) is the number of agents on team Carleton,
     // The second parameter (u) is the number of agents on team University.
-    environment: soccer.SoccerField(1, 0)
+    environment: soccer.SoccerField(5, 5)
 
     // The number after "player_" is the ID of the agent. There must be
     // exactly c + u agents defined, and an agent for every integer in
