@@ -15,11 +15,11 @@ MAS krislet {
         player_2 offensive_agent;
         player_3 offensive_agent;
         player_4 offensive_agent;
-        player_5 offensive_agent;
+        player_5 goalie_agent;
 		
         player_6 offensive_agent;
         player_7 offensive_agent;
         player_8 offensive_agent;
         player_9 offensive_agent;
-        player_10 offensive_agent;
+        player_10 goalie_agent;
 }
