@@ -6,7 +6,7 @@
 
 /* Initial beliefs and rules */
 atBall :- ball(DIR, DIST) & DIST < 0.5.
-atNet :- selfGoal(DIR, DIST) & DIST < 0.5.
+nearNet :- selfGoal(DIR, DIST) & DIST < 20.
 
 /* Initial goals */
 !findGoal.
@@ -15,8 +15,8 @@ atNet :- selfGoal(DIR, DIST) & DIST < 0.5.
 // Find a teammate and pass the ball in its direction.
 +!passToTeammate : ~ball <- !findBall.
 +!passToTeammate : ~teammate <- turn(15);!passToTeammate.
-+!passToTeammate : selfGoal(X,Y) & teammate(DIR,DIST) <- kick(50, DIR);!findGoal.
-+!passToTeammate : ~selfGoal & teammate(DIR,DIST) <- kick(100, DIR);!findGoal.
++!passToTeammate : topOfBox(X,Y) & teammate(DIR,DIST) <- kick(50, DIR);!findGoal.
++!passToTeammate : ~topOfBox & teammate(DIR,DIST) <- kick(100, DIR);!findGoal.
 
 // Run to the ball if it is seen
 +!goToBall : ~ball <- !findBall.
@@ -28,11 +28,11 @@ atNet :- selfGoal(DIR, DIST) & DIST < 0.5.
 +!findBall : ball(DIR, DIST) <- turn(DIR);!goToBall.
 
 // Go to own net
-+!goToGoal : ~selfGoal <- !findGoal.
-+!goToGoal : selfGoal(DIR,DIST) & atNet <- !findBall.
-+!goToGoal : selfGoal(DIR,DIST) <- dash(100); !!goToGoal.
++!goToGoal : ~topOfBox <- !findGoal.
++!goToGoal : topOfBox(DIR,DIST) & nearNet <- !findBall.
++!goToGoal : topOfBox(DIR,DIST) <- dash(100); !!goToGoal.
 
 // Find Own Net
-+!findGoal : ~selfGoal <- turn(15); !findGoal.
-+!findGoal : selfGoal(DIR, DIST) <- turn(DIR);!goToGoal.
++!findGoal : ~topOfBox <- turn(15); !findGoal.
++!findGoal : topOfBox(DIR, DIST) <- turn(DIR);!goToGoal.
 

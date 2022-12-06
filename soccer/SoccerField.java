@@ -9,6 +9,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Vector;
 
 public class SoccerField extends Environment {
     private final HashMap<Integer, Krislet> krislets;
@@ -82,6 +83,25 @@ public class SoccerField extends Environment {
                         .addTerms(new NumberTermImpl(enemyGoal.m_direction), new NumberTermImpl(enemyGoal.m_distance)));
             }
 
+            Vector<FlagInfo> fl = (Vector<FlagInfo>) memory.getFlagList();
+            int w = 0;
+            char s = 'l';
+            if (krislet.side != s) {
+                s = 'r';
+            }
+
+            for (int i = 0; i < fl.size(); i++){
+                FlagInfo fi = fl.get(i);
+                if (fi.getType().equals("flag p "+ s + " c")) {
+                    p.add(new LiteralImpl("topOfBox")
+                            .addTerms(new NumberTermImpl(fi.m_direction), new NumberTermImpl(fi.m_distance)));
+                    w = 1;
+                    break;
+                }
+            }
+            if (w == 0) p.add(Literal.parseLiteral("~topOfBox"));
+        } else {
+            p.add(Literal.parseLiteral("~topOfBox"));
         }
 
         PlayerInfo player = (PlayerInfo) memory.getObject("player");
