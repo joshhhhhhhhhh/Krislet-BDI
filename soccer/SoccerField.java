@@ -104,19 +104,25 @@ public class SoccerField extends Environment {
             p.add(Literal.parseLiteral("~topOfBox"));
         }
 
-        PlayerInfo player = (PlayerInfo) memory.getObject("player");
-        if (player == null) {
-            p.add(Literal.parseLiteral("~teammate"));
-        } else {
+        Vector<PlayerInfo> pl = (Vector<PlayerInfo>) memory.getPlayerList();
+        int w = 0;
+        float p_dist = 0;
+        PlayerInfo furthestPlayer = null;
+        for (int i = 0; i < pl.size(); i++){
+            PlayerInfo player = pl.get(i);
             String p_team = player.getTeamName();
             String m_team = krislet.getTeamName();
             if(p_team.equals(m_team)) {
-                p.add(new LiteralImpl("teammate")
-                        .addTerms(new NumberTermImpl(player.m_direction), new NumberTermImpl(player.m_distance)));
-            } else {
-                p.add(Literal.parseLiteral("~teammate"));
+                if (player.m_distance > p_dist)
+                    furthestPlayer = player;
+                    p_dist = player.m_distance;
+                    w = 1;
             }
         }
+        if (w == 1) p.add(new LiteralImpl("furthestTeammate")
+                .addTerms(new NumberTermImpl(furthestPlayer.m_direction), new NumberTermImpl(furthestPlayer.m_distance)));
+
+        if (w == 0) p.add(Literal.parseLiteral("~furthestTeammate"));
 
         return p;
     }

@@ -55,6 +55,10 @@ public class Memory
 		return info.getFlagList();
 	}
 
+	public Vector<?> getPlayerList() {
+		return info.getPlayerList();
+	}
+
     //---------------------------------------------------------------------------
     // This function waits for new visual information
     public void waitForNewInfo() throws InterruptedException {

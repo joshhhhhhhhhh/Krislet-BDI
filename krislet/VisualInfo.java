@@ -30,7 +30,7 @@ class VisualInfo {
 
     // Split objects into specific lists
     private final Vector<?> m_ball_list;
-    private final Vector<?> m_player_list;
+    private final Vector<PlayerInfo> m_player_list;
     private final Vector<FlagInfo> m_flag_list;
     private final Vector<?> m_goal_list;
     private final Vector<?> m_line_list;
@@ -39,7 +39,7 @@ class VisualInfo {
     public VisualInfo(String info) {
         info.trim();
         m_message = info;
-        m_player_list = new Vector<Object>(22);
+        m_player_list = new Vector<PlayerInfo>(22);
         m_ball_list = new Vector<Object>(1);
         m_goal_list = new Vector<Object>(10);
         m_line_list = new Vector<Object>(20);
@@ -112,7 +112,9 @@ class VisualInfo {
 			if(objInfo.getType().contains("flag p") &&
                     (objInfo.getType().contains("l c") || objInfo.getType().contains("r c"))){
 				m_flag_list.addElement((FlagInfo) objInfo);
-			}
+			} else if (objInfo.getType().contains("player")) {
+                m_player_list.addElement((PlayerInfo) objInfo);
+            }
             m_objects.addElement(objInfo);
             // this splits the string containing the other info about
             // the object (distance, direction, etc.)

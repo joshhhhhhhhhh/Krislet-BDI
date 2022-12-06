@@ -12,11 +12,11 @@ nearNet :- selfGoal(DIR, DIST) & DIST < 20.
 !findGoal.
 
 /* Plans */
-// Find a teammate and pass the ball in its direction.
+// Find the furthest teammate and pass the ball in its direction.
 +!passToTeammate : ~ball <- !findBall.
-+!passToTeammate : ~teammate <- turn(15);!passToTeammate.
-+!passToTeammate : topOfBox(X,Y) & teammate(DIR,DIST) <- kick(50, DIR);!findGoal.
-+!passToTeammate : ~topOfBox & teammate(DIR,DIST) <- kick(100, DIR);!findGoal.
++!passToTeammate : ~furthestTeammate <- turn(15);!passToTeammate.
++!passToTeammate : topOfBox(X,Y) & furthestTeammate(DIR,DIST) <- kick(50, DIR);!findGoal.
++!passToTeammate : ~topOfBox & furthestTeammate(DIR,DIST) <- kick(100, DIR);!findGoal.
 
 // Run to the ball if it is seen
 +!goToBall : ~ball <- !findBall.
