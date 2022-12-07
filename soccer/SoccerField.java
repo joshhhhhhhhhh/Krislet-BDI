@@ -113,10 +113,11 @@ public class SoccerField extends Environment {
             String p_team = player.getTeamName();
             String m_team = krislet.getTeamName();
             if(p_team.equals(m_team)) {
-                if (player.m_distance > p_dist)
+                if (player.m_distance > p_dist) {
                     furthestPlayer = player;
                     p_dist = player.m_distance;
                     w = 1;
+                }
             }
         }
         if (w == 1) p.add(new LiteralImpl("furthestTeammate")
