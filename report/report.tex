@@ -53,11 +53,21 @@ Introduction goes here. Example citation~\cite{b1}.
 
 \section{Agents}
 \subsection{Offensive agent}
-\subsection{Defensive agent}
+\subsection{Defensive agent - NS}
+The defensive agent was created leveraging the Jason BDI Framework, and is designed to function like a "defender" would in soccer.
+Defenders are the playmakers of soccer.
+They take defensive positioning on the field and then work to pass the ball to their teammates down the field.
+In this implementation of the "defensive\_agent", the agent has the initial beliefs/rules set to determine if the agent is near the ball, near its own net, and at the ball.
+The agent has the initial goal of finding its positioning.
+The agent continues to turn looking for its positioning (at the top of the penalty box).
+The agent will run towards this position until it determines that it is there, at which point it begins to look for the ball, and runs towards the ball.
+Upon arriving near the ball, this agent slows down, arrives, and then begins looking for a teammate to pass the ball to.
+The agent then passes the ball (\"making a play\") and looks to return to its defensive position, and repeats the cycle.
+
 \subsection{Goalkeeping agent}
 
 \section{Testing}
-\subsection{Testing Methodology}
+\subsection{Testing Methodology - NS}
 Extensive manual testing was performed on each of the types of agents developed.
 Initially, each variant of agent was tested individually as well as in several group settings.
 A server and monitor were set up for each of the varieties of tests.
@@ -87,7 +97,6 @@ As such, this test attempts to determine if a team composed of one "goalie\_agen
 Positive results from this methodology is having an outcome whereupon repeated tests result in the team of reactive agents has been beaten greater than fifty percent of the time.
 
 \subsection{Testing Results}
-
 The results of the four testing methodologies were positive in many manners.
 Some testing methodologies were not cohesive with certain agent designs, as a result of their manner of test and this was shown through the testing outcomes.
 
