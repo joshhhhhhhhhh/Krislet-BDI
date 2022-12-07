@@ -3,15 +3,13 @@ package soccer;
 import jason.NoValueException;
 import jason.asSyntax.*;
 import jason.environment.Environment;
-import krislet.Krislet;
-import krislet.Memory;
-import krislet.ObjectInfo;
-import krislet.SoccerParams;
+import krislet.*;
 
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Vector;
 
 public class SoccerField extends Environment {
     private final HashMap<Integer, Krislet> krislets;
@@ -85,8 +83,46 @@ public class SoccerField extends Environment {
                         .addTerms(new NumberTermImpl(enemyGoal.m_direction), new NumberTermImpl(enemyGoal.m_distance)));
             }
 
+            Vector<FlagInfo> fl = (Vector<FlagInfo>) memory.getFlagList();
+            int w = 0;
+            char s = 'l';
+            if (krislet.side != s) {
+                s = 'r';
+            }
+
+            for (int i = 0; i < fl.size(); i++){
+                FlagInfo fi = fl.get(i);
+                if (fi.getType().equals("flag p "+ s + " c")) {
+                    p.add(new LiteralImpl("topOfBox")
+                            .addTerms(new NumberTermImpl(fi.m_direction), new NumberTermImpl(fi.m_distance)));
+                    w = 1;
+                    break;
+                }
+            }
+            if (w == 0) p.add(Literal.parseLiteral("~topOfBox"));
+        } else {
+            p.add(Literal.parseLiteral("~topOfBox"));
         }
 
+        Vector<PlayerInfo> pl = (Vector<PlayerInfo>) memory.getPlayerList();
+        int w = 0;
+        float p_dist = 0;
+        PlayerInfo furthestPlayer = null;
+        for (int i = 0; i < pl.size(); i++){
+            PlayerInfo player = pl.get(i);
+            String p_team = player.getTeamName();
+            String m_team = krislet.getTeamName();
+            if(p_team.equals(m_team)) {
+                if (player.m_distance > p_dist)
+                    furthestPlayer = player;
+                    p_dist = player.m_distance;
+                    w = 1;
+            }
+        }
+        if (w == 1) p.add(new LiteralImpl("furthestTeammate")
+                .addTerms(new NumberTermImpl(furthestPlayer.m_direction), new NumberTermImpl(furthestPlayer.m_distance)));
+
+        if (w == 0) p.add(Literal.parseLiteral("~furthestTeammate"));
 
         return p;
     }

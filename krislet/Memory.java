@@ -6,6 +6,8 @@
 
 package krislet;
 
+import java.util.Vector;
+
 public class Memory
 {
 	private VisualInfo info;	// place where all information is stored
@@ -49,6 +51,13 @@ public class Memory
 		return null;
     }
 
+	public Vector<?> getFlagList() {
+		return info.getFlagList();
+	}
+
+	public Vector<?> getPlayerList() {
+		return info.getPlayerList();
+	}
 
     //---------------------------------------------------------------------------
     // This function waits for new visual information
