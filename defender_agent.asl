@@ -6,6 +6,7 @@
 
 /* Initial beliefs and rules */
 atBall :- ball(DIR, DIST) & DIST < 0.5.
+nearBall :- ball(DIR, DIST) & DIST < 3.5.
 nearNet :- selfGoal(DIR, DIST) & DIST < 20.
 
 /* Initial goals */
@@ -15,12 +16,13 @@ nearNet :- selfGoal(DIR, DIST) & DIST < 20.
 // Find the furthest teammate and pass the ball in its direction.
 +!passToTeammate : ~ball <- !findBall.
 +!passToTeammate : ~furthestTeammate <- turn(15);!passToTeammate.
-+!passToTeammate : topOfBox(X,Y) & furthestTeammate(DIR,DIST) <- kick(50, DIR);!findGoal.
-+!passToTeammate : ~topOfBox & furthestTeammate(DIR,DIST) <- kick(100, DIR);!findGoal.
++!passToTeammate : selfGoal(X,Y) & furthestTeammate(DIR,DIST) <- kick(22, DIR);!findGoal.
++!passToTeammate : ~selfGoal & furthestTeammate(DIR,DIST) <- kick(100, DIR);!findGoal.
 
 // Run to the ball if it is seen
 +!goToBall : ~ball <- !findBall.
-+!goToBall : ball(DIR,DIST) & atBall <- !passToTeammate.
++!goToBall : atBall <- !passToTeammate.
++!goToBall : nearBall <- dash(69); !!goToBall.
 +!goToBall : ball(DIR,DIST) <- dash(100); !!goToBall.
 
 // Find the ball

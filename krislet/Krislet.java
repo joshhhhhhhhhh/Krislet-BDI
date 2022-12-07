@@ -144,7 +144,6 @@ public class Krislet implements Runnable
     protected void parseInitCommand(String message)
 	throws IOException
     {
-		System.out.println(message);
 	Matcher m = Pattern.compile("^\\(init\\s(\\w)\\s(\\d{1,2})\\s(\\w+?)\\).*$").matcher(message);
 	if(!m.matches())
 	    {
