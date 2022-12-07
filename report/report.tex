@@ -88,6 +88,35 @@ Positive results from this methodology is having an outcome whereupon repeated t
 
 \subsection{Testing Results}
 
+The results of the four testing methodologies were positive in many manners.
+Some testing methodologies were not cohesive with certain agent designs, as a result of their manner of test and this was shown through the testing outcomes.
+
+Each of the variants of agent performed appropriately in the "Single Agent, Single Team" test, however this test was not an optimal test of the "goalie\_agent" or the "defender\_agent".
+The "offensive\_agent" functioned appropriately, seeking out the ball, and shooting/scoring repeatedly.
+The "goalie\_agent" located its net, and waited in the net for the ball to come within a given distance of it.
+This is appropriate output for the test, however this test is not suitable for this agent as much of its actions and reactions are not tested as the ball never enters the distance to cause the agent to perform further actions.
+The "defender\_agent" located its defensive position, traversed the field to get to the location, located the ball, and went to the ball.
+Following this, the agent entered a constant loop of searching for another player to pass the ball to, which would not end as the nature of the test does not allow for teammates.
+This is appropriate output for the test, however this test is not suitable for this agent as much of its actions and reactions are not tested following entering the proximity of the ball.
+
+Each of the variants of agent performed appropriately in the "Utilitarianism" test, however this test was not an optimal test of the "goalie\_agent".
+The "offensive\_agent" functioned appropriately "en masse".
+This agent continued to consistently seek out the ball and shoot/score repeatedly in a "back and forth" manner, thus passing this test.
+The "goalie\_agent" also functioned appropriately "en masse".
+All the "goalie\_agent"s sought out their respective nets and waited repeatedly for the ball.
+However, this test would not pass, as in teams solely composed of this agent, the games would always end in a tie.
+The "defender\_agent" functioned appropriately "en masse".
+This agent worked to get its appropriate position, and then get to the ball, following this the agents were able to kick the ball towards other agents in attempts to pass.
+This agent would on occasion score as a result of this activity, thus allowing for the test to pass.
+
+Each of the variants of agent performed appropriately in the "teamwork" test.
+The "offensive\_agent" functioned appropriately as it was able to locate and track the ball as well as shoot/score goals effectively.
+The "goalie\_agent" was able to perform fully in an appropriate manner, as the ball would be moved towards it by other players, and this agent would pass, or clear the ball appropriately given the situations.
+The "defender\_agent" functioned appropriately working to get defensive positioning and subsequently attempt to pass the ball appropriately.
+
+The team of developed agents performed appropriately in the "Darwinian Test".
+Upon numerous manual tests of the composed team of agents against the team of reactive agents, the composed team of agents succeeded in beating the reactive agents seventy-five percent of the time.
+
 
 \section{Future Work}
 
