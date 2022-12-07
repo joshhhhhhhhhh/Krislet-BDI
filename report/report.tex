@@ -51,8 +51,42 @@ For this purpose we created three agents with different goals, desires, and move
 \section{Introduction}
 Introduction goes here. Example citation~\cite{b1}.
 
-\section{Integration with Jason}
+\section{Integration with Jason (T.R.)}
+One of the main pieces of a Jason-based agent system is the environment class,
+written in Java~\cite{jason-manual}. For our implementation, this class handles
+interoperability between agent definitions written in AgentSpeak and the
+RoboCup simulator server. It is responsible for initializing the player
+connections to the server and handling all communication over the network. This
+includes receiving visual information from the simulator server and updating
+the sentences perceived by each Jason agent, as well as turning Jason
+agent-created action sentences into commands to send to the simulation server.
+
+The communication between the environment class and simulation server is done
+with a slightly modified version of Krislet. This version of Krislet has had
+its \texttt{Brain} class removed, which is the class responsible for making
+soccer-playing decisions. Additionally, it has been modified to implement
+\texttt{Runnable}, meaning that it can be launched in a new thread. The
+combination of these two modifications mean we can launch a Krislet instance in
+a new thread, then read its memory and tell it to perform actions from other
+threads, and the Krislet thread will take care of responding to messages from
+the server.
+
+From there, the environment class spawns Krislet threads and lets them
+run. Jason calls the \texttt{executeAction} method when an agent wants to
+perform an action, which then is responsible for requesting Krislet to send the
+appropriate command to the simulation server~\cite{jason-manual}. Additionally,
+whenever Jason evaluates agent plans, it calls the \texttt{getPercepts} method,
+which then checks the vision of the Krislet instance to determine what percepts
+the plans should be evaluated with.
+
 \subsection{Running the Code}
+Launching of the agents is handled by Jason. This can be done by downloading
+and installing Jason, opening the \texttt{krislet.masj2} in jEdit, and then
+clicking ``Run'' in the jEdit Jason console. The agents can also be launched
+without jEdit using the instructions in the Jason FAQ~\cite{jason-faq}.
+
+The number of agents per teams, and the type of agents on each team can be
+configured in the \texttt{krislet.masj2} file according to the comments.
 
 \section{Agents}
 
@@ -170,6 +204,12 @@ As previously mentioned, our agents are not well-optimized and their actions are
 We can continue to make improvements to our plans to make their performance more complex and efficient to take full advantage of the diverse features Jason offers.
 
 \begin{thebibliography}{00}
+\bibitem{jason-manual} R. H. Bordini and J. F. Hübner, ``Jason: A Java-based
+interpreter for an extended version of AgentSpeak,'' Feb. 2007. Accessed:
+Dec. 08, 2022. [Online]. Available: https://jason.sourceforge.net/Jason.pdf
+\bibitem{jason-faq} Jason Contributors, ``Jason FAQ,''
+Jason. [Online]. Available:
+https://jason.sourceforge.net/doc/faq.html. [Accessed: 08-Dec-2022].
 \bibitem{b1} J. S. Mill, ``Utilitarianism,'' London: Parker, Son, and Bourn, 1863.
 \bibitem{b2} M. Ruse and R. J. Richards, ''The cambridge companion to the "Origin of species",'' vol. 2. Cambridge: Cambridge University Press, 2009.
 \end{thebibliography}
