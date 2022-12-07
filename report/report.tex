@@ -52,13 +52,28 @@ Introduction goes here. Example citation~\cite{b1}.
 \subsection{Running the Code}
 
 \section{Agents}
-\subsection{Offensive agent}
+\subsection{Offensive agent (J.B.)}
+The main goal of an offensive agent is to score a goal.
+In order to achieve this, the offensive agent which was implemented follows a simple pattern: first it finds the ball, then it runs to the ball, then it finds the goal, and finally it kicks the ball to the goal.
+This is a very simple implementation, as the design goal of the agent was to prove the usability of Jason's BDI framework rather than making an optimized agent.
+There are still however small optimizations made which show how Jason can be used to optimize agents to make incredibly smart decisions.
+When the agent dashes to the ball, it constantly turns until it is facing the ball and then only dashes.
+This greatly increases its accuracy so that it won't miss the ball while maintaining a high speed.
+One other example of an optimization is when the agent kicks the ball, if it does not see the enemy goal and does see its own goal, it will kick the ball in the opposite direction of its own goal.
+This greatly reduces the time it would take to find the goal in which an enemy could kick the ball away, and assures that the ball will always be kicked in an appropriate direction.
+
 \subsection{Defensive agent}
 \subsection{Goalkeeping agent}
 
 \section{Testing}
 
-\section{Future Work}
+\section{Future Work (J.B.)}
+As the aim of this project was to showcase and utilize the Jason BDI framework in the context of RoboCup, there was not much effort put in to optimizing the agents' playstyles.
+Future work with this project would be to optimize these agents to better play and better represent their positions.
+One such major optimization would be increasing stamina efficiency, especially on the offensive player which is almost always dashing.
+The position of the goals relative to the agents could also always be tracked when the agent cannot view them in order to avoid having to spend extra time turning.
+Non-goalie agents could also only stay in specifc parts of the field in order to avoid moving back and forth, and the defensive agent could be made to have more accurate passes.
+All of these optimizations are only examples of what the team discovered, and examples of what could be worked on using this codebase in the future, however there are most certianly many others which could also be worked on.
 
 \section{Conclusion}
 
