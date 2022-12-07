@@ -7,7 +7,7 @@
 \usepackage{xcolor}
 \begin{document}
 
-\title{Using the Jason Belief-Desire-Intention framework for implementing RoboCup soccer-playing agents\\
+\title{Leveraging the Jason Belief-Desire-Intention Framework to Implement RoboCup Soccer-Playing Agents\\
 }
 
 \author{\IEEEauthorblockN{Josh Blondin}
@@ -57,14 +57,45 @@ Introduction goes here. Example citation~\cite{b1}.
 \subsection{Goalkeeping agent}
 
 \section{Testing}
+\subsection{Testing Methodology}
+Extensive manual testing was performed on each of the types of agents developed.
+Initially, each variant of agent was tested individually as well as in several group settings.
+A server and monitor were set up for each of the varieties of tests.
+
+The initial test which was implemented was the "Single Agent, Single Team" test.
+This testing methodology, as the name suggests, implements a single agent on only one team, and determines how the agent acts.
+Positive results in this methodology occur in situations where the behaviour of the agent is exactly as expected in a deterministic setting.
+As no other agents are acting upon the system, the actions of the agent should be directly known at the time of initiating a "kick-off" event.
+
+The secondary test which was implemented was referred to as the "Utilitarianism Test".
+This testing methodology follows in the footsteps of the system of utilitarian ethics~\cite{b1}, and asks "What would happen if everyone acted the same way?".
+This test involves setting two teams of 5 players, all to the same variant of agent, and observing the results.
+The ideology behind this methodology, is to determine if the agent still performs in the expected manner, even when many other agents may get the chance to act exactly that way before it has the opportunity to,
+Positive results in this methodology occur in situations wherein the actions of each agent still follows in the premise of its design, even under the pressure of many other agents with exactly the same goals working alongside it and against it.
+
+The tertiary test which was implemented was referred to as the teamwork test.
+This test varies from the prior two tests, as it is the first test in which performs testing on all three variants of agent at one time.
+This test sets two teams of the same composition to face one another.
+The composition was such that each team had one "goalie\_agent", two "defender\_agent"s, and two "offensive\_agent"s.
+Positive results in this methodology for an agent is for each variety of agent to accomplish its goals in a manner which works in tandem with the other agents.
+This is such to say, that each agent is able to perform it's intended duties without preventing other variants of agent from performing theirs.
+
+The final test which was implemented was referred to as the "Darwinian Test".
+This test is a test all which also works to test all three variants of agent at one time.
+This test is inspired by the theory of Charles Darwin regarding evolution by natural selection~\cite{b2}, and attempts to determine in a world composed of only two types of teams, which would survive as the "fittest".
+As such, this test attempts to determine if a team composed of one "goalie\_agent", two "defender\_agent"s, and two "offensive\_agent"s, is capable of consistently beating a team of reactive agents, specifically these reactive agents are known as "Krislet" agents.
+Positive results from this methodology is having an outcome whereupon repeated tests result in the team of reactive agents has been beaten greater than fifty percent of the time.
+
+\subsection{Testing Results}
+
 
 \section{Future Work}
 
 \section{Conclusion}
 
 \begin{thebibliography}{00}
-\bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
-\bibitem{b2} J. Clerk Maxwell, A Treatise on Electricity and Magnetism, 3rd ed., vol. 2. Oxford: Clarendon, 1892, pp.68--73.
+\bibitem{b1} J. S. Mill, ``Utilitarianism,'' London: Parker, Son, and Bourn, 1863.
+\bibitem{b2} M. Ruse and R. J. Richards, ''The cambridge companion to the "Origin of species",'' vol. 2. Cambridge: Cambridge University Press, 2009.
 \bibitem{b3} I. S. Jacobs and C. P. Bean, ``Fine particles, thin films and exchange anisotropy,'' in Magnetism, vol. III, G. T. Rado and H. Suhl, Eds. New York: Academic, 1963, pp. 271--350.
 \bibitem{b4} K. Elissa, ``Title of paper if known,'' unpublished.
 \bibitem{b5} R. Nicole, ``Title of paper with only first word capitalized,'' J. Name Stand. Abbrev., in press.
