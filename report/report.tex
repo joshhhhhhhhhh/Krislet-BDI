@@ -81,7 +81,20 @@ The agent will run towards this position until it determines that it is there, a
 Upon arriving near the ball, this agent slows down, arrives, and then begins looking for a teammate to pass the ball to.
 The agent then passes the ball (\"making a play\") and looks to return to its defensive position, and repeats the cycle.
 
-\subsection{Goalkeeping agent}
+\subsection{Goalkeeping agent (W.T.)}
+In the game of soccer, the goalkeeper position's main role is to prevent the opposing team from scoring a point into their own team's goal.
+This is accomplished by having them intercept the trajectory of the ball and directing it away from the vicinity of the goal.
+For this implementation of a goalkeeping agent, its initial beliefs and rules regard the positioning of the agent in regard to the soccer ball and its own team's goal.
+The initial goal set for this agent is to find the goal it is supposed to be defending;
+this differs from defensive agents as goalkeeping agents are looking for the exact goal whereas defensive agents are looking for the top of the penalty box.
+Once it is able to find the goal, it executes the corresponding plan to move towards the goal, which is satisfied once the agent is 3.0 units away from the goal flag.
+It then executes the plan to locate the ball and continues to keep the ball within the agent's vision range by looping through the plan if the ball is not nearby.
+If the ball falls within the 20.0 unit radius range of the agent, it will then move towards the ball.
+Once next to the ball, the agent will either: 1.
+Pass the ball to the furthest teammate if its own goal is not visible (to avoid self scoring) 2. Kick at the enemy goal if no teammate is visible 3.
+Kick directly backwards if your own goal is visible, the enemy goal and a teammate are not 4.
+Turn if none of the preconditions for the previous actions are met.
+If the first three actions are taken, the agent will then execute the plan of finding its team's goal and the behavior cycles back.
 
 \section{Testing}
 \subsection{Testing Methodology (N.S.)}
@@ -152,7 +165,11 @@ The position of the goals relative to the agents could also always be tracked wh
 Non-goalie agents could also only stay in specifc parts of the field in order to avoid moving back and forth, and the defensive agent could be made to have more accurate passes.
 All of these optimizations are only examples of what the team discovered, and examples of what could be worked on using this codebase in the future, however there are most certianly many others which could also be worked on.
 
-\section{Conclusion}
+\section{Conclusion (W.T.)}
+As demonstrated by our implementation of the soccer-playing agents, Jason Belief-Desire-Intention is an effective framework to use for development of simple yet expressive multi-agent reactive planning systems.
+By defining the beliefs, rules, goals and plans for agents using the semantics of the AgentSpeak(L) language implemented with the agent architecture, we are able to create agents that exhibit basic behaviors of offensive, defensive and goalkeeper players in soccer.
+As previously mentioned, our agents are not well-optimized and their actions are rather simple.
+We can continue to make improvements to our plans to make their performance more complex and efficient to take full advantage of the diverse features Jason offers.
 
 \begin{thebibliography}{00}
 \bibitem{b1} J. S. Mill, ``Utilitarianism,'' London: Parker, Son, and Bourn, 1863.
