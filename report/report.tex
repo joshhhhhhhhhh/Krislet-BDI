@@ -112,10 +112,10 @@ One other example of an optimization is when the agent kicks the ball, if it doe
 This greatly reduces the time it would take to find the goal in which an enemy could kick the ball away, and assures that the ball will always be kicked in an appropriate direction.
 
 \subsection{Defensive agent (N.S.)}
-The defensive agent was created leveraging the Jason BDI Framework, and is designed to function like a "defender" would in soccer.
+The defensive agent was created leveraging the Jason BDI Framework, and is designed to function like a ``defender'' would in soccer.
 Defenders are the playmakers of soccer.
 They take defensive positioning on the field and then work to pass the ball to their teammates down the field.
-In this implementation of the "defensive\_agent", the agent has the initial beliefs/rules set to determine if the agent is near the ball, near its own net, and at the ball.
+In this implementation of the ``defensive\_agent'', the agent has the initial beliefs/rules set to determine if the agent is near the ball, near its own net, and at the ball.
 The agent has the initial goal of finding its positioning.
 The agent continues to turn looking for its positioning (at the top of the penalty box).
 The agent will run towards this position until it determines that it is there, at which point it begins to look for the ball, and runs towards the ball.
@@ -143,56 +143,56 @@ Extensive manual testing was performed on each of the types of agents developed.
 Initially, each variant of agent was tested individually as well as in several group settings.
 A server and monitor were set up for each of the varieties of tests.
 
-The initial test which was implemented was the "Single Agent, Single Team" test.
+The initial test which was implemented was the ``Single Agent, Single Team'' test.
 This testing methodology, as the name suggests, implements a single agent on only one team, and determines how the agent acts.
 Positive results in this methodology occur in situations where the behaviour of the agent is exactly as expected in a deterministic setting.
-As no other agents are acting upon the system, the actions of the agent should be directly known at the time of initiating a "kick-off" event.
+As no other agents are acting upon the system, the actions of the agent should be directly known at the time of initiating a ``kick-off'' event.
 
-The secondary test which was implemented was referred to as the "Utilitarianism Test".
-This testing methodology follows in the footsteps of the system of utilitarian ethics~\cite{b1}, and asks "What would happen if everyone acted the same way?".
+The secondary test which was implemented was referred to as the ``Utilitarianism Test''.
+This testing methodology follows in the footsteps of the system of utilitarian ethics~\cite{b1}, and asks ``What would happen if everyone acted the same way?''.
 This test involves setting two teams of 5 players, all to the same variant of agent, and observing the results.
 The ideology behind this methodology, is to determine if the agent still performs in the expected manner, even when many other agents may get the chance to act exactly that way before it has the opportunity to,
 Positive results in this methodology occur in situations wherein the actions of each agent still follows in the premise of its design, even under the pressure of many other agents with exactly the same goals working alongside it and against it.
 
 The tertiary test which was implemented was referred to as the teamwork test.
 This test sets two teams of the same composition to face one another.
-The composition was such that each team had one "goalie\_agent", two "defender\_agent"s, and two "offensive\_agent"s.
+The composition was such that each team had one ``goalie\_agent'', two ``defender\_agent''s, and two ``offensive\_agent''s.
 Positive results in this methodology for an agent is for each variety of agent to accomplish its goals in a manner which works in tandem with the other agents.
 This is such to say, that each agent is able to perform it's intended duties without preventing other variants of agent from performing theirs.
 
-The final test which was implemented was referred to as the "Darwinian Test".
-This test is inspired by the theory of Charles Darwin regarding evolution by natural selection~\cite{b2}, and attempts to determine in a world composed of only two types of teams, which would survive as the "fittest".
-As such, this test attempts to determine if a team composed of one "goalie\_agent", two "defender\_agent"s, and two "offensive\_agent"s, is capable of consistently beating a team of reactive agents, specifically these reactive agents are known as "Krislet" agents.
+The final test which was implemented was referred to as the ``Darwinian Test''.
+This test is inspired by the theory of Charles Darwin regarding evolution by natural selection~\cite{b2}, and attempts to determine in a world composed of only two types of teams, which would survive as the ``fittest''.
+As such, this test attempts to determine if a team composed of one ``goalie\_agent'', two ``defender\_agent''s, and two ``offensive\_agent''s, is capable of consistently beating a team of reactive agents, specifically these reactive agents are known as ``Krislet'' agents.
 Positive results from this methodology is having an outcome whereupon repeated tests result in the team of reactive agents has been beaten greater than fifty percent of the time.
 
 \subsection{Testing Results (N.S.)}
 The results of the four testing methodologies were positive in many manners.
 Some testing methodologies were not cohesive with certain agent designs, as a result of their manner of test and this was shown through the testing outcomes.
 
-Each of the variants of agent performed appropriately in the "Single Agent, Single Team" test, however this test was not an optimal test of the "goalie\_agent" or the "defender\_agent".
-The "offensive\_agent" functioned appropriately, seeking out the ball, and shooting/scoring repeatedly.
-The "goalie\_agent" located its net, and waited in the net for the ball to come within a given distance of it.
+Each of the variants of agent performed appropriately in the ``Single Agent, Single Team'' test, however this test was not an optimal test of the ``goalie\_agent'' or the ``defender\_agent''.
+The ``offensive\_agent'' functioned appropriately, seeking out the ball, and shooting/scoring repeatedly.
+The ``goalie\_agent'' located its net, and waited in the net for the ball to come within a given distance of it.
 This is appropriate output for the test, however this test is not suitable for this agent as much of its actions and reactions are not tested as the ball never enters the distance to cause the agent to perform further actions.
-The "defender\_agent" located its defensive position, traversed the field to get to the location, located the ball, and went to the ball.
+The ``defender\_agent'' located its defensive position, traversed the field to get to the location, located the ball, and went to the ball.
 Following this, the agent entered a constant loop of searching for another player to pass the ball to, which would not end as the nature of the test does not allow for teammates.
 This is appropriate output for the test, however this test is not suitable for this agent as much of its actions and reactions are not tested following entering the proximity of the ball.
 
-Each of the variants of agent performed appropriately in the "Utilitarianism" test, however this test was not an optimal test of the "goalie\_agent".
-The "offensive\_agent" functioned appropriately "en masse".
-This agent continued to consistently seek out the ball and shoot/score repeatedly in a "back and forth" manner, thus passing this test.
-The "goalie\_agent" also functioned appropriately "en masse".
-All the "goalie\_agent"s sought out their respective nets and waited repeatedly for the ball.
+Each of the variants of agent performed appropriately in the ``Utilitarianism'' test, however this test was not an optimal test of the ``goalie\_agent''.
+The ``offensive\_agent'' functioned appropriately ``en masse''.
+This agent continued to consistently seek out the ball and shoot/score repeatedly in a ``back and forth'' manner, thus passing this test.
+The ``goalie\_agent'' also functioned appropriately ``en masse''.
+All the ``goalie\_agent''s sought out their respective nets and waited repeatedly for the ball.
 However, this test would not pass, as in teams solely composed of this agent, the games would always end in a tie.
-The "defender\_agent" functioned appropriately "en masse".
+The ``defender\_agent'' functioned appropriately ``en masse''.
 This agent worked to get its appropriate position, and then get to the ball, following this the agents were able to kick the ball towards other agents in attempts to pass.
 This agent would on occasion score as a result of this activity, thus allowing for the test to pass.
 
-Each of the variants of agent performed appropriately in the "teamwork" test.
-The "offensive\_agent" functioned appropriately as it was able to locate and track the ball as well as shoot/score goals effectively.
-The "goalie\_agent" was able to perform fully in an appropriate manner, as the ball would be moved towards it by other players, and this agent would pass, or clear the ball appropriately given the situations.
-The "defender\_agent" functioned appropriately working to get defensive positioning and subsequently attempt to pass the ball appropriately.
+Each of the variants of agent performed appropriately in the ``teamwork'' test.
+The ``offensive\_agent'' functioned appropriately as it was able to locate and track the ball as well as shoot/score goals effectively.
+The ``goalie\_agent'' was able to perform fully in an appropriate manner, as the ball would be moved towards it by other players, and this agent would pass, or clear the ball appropriately given the situations.
+The ``defender\_agent'' functioned appropriately working to get defensive positioning and subsequently attempt to pass the ball appropriately.
 
-The team of developed agents performed appropriately in the "Darwinian Test".
+The team of developed agents performed appropriately in the ``Darwinian Test''.
 Upon numerous manual tests of the composed team of agents against the team of reactive agents, the composed team of agents succeeded in beating the reactive agents seventy-five percent of the time.
 
 
@@ -226,7 +226,7 @@ Dec. 08, 2022. [Online]. Available: https://jason.sourceforge.net/Jason.pdf
 Jason. [Online]. Available:
 https://jason.sourceforge.net/doc/faq.html. [Accessed: 08-Dec-2022].
 \bibitem{b1} J. S. Mill, ``Utilitarianism,'' London: Parker, Son, and Bourn, 1863.
-\bibitem{b2} M. Ruse and R. J. Richards, ''The cambridge companion to the "Origin of species",'' vol. 2. Cambridge: Cambridge University Press, 2009.
+\bibitem{b2} M. Ruse and R. J. Richards, ``The cambridge companion to the `Origin of species','' vol. 2. Cambridge: Cambridge University Press, 2009.
 \end{thebibliography}
 
 \end{document}
