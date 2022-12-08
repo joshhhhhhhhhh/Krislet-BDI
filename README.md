@@ -6,4 +6,4 @@ that the jason.jar location, Java home, and Ant libs are set correctly as in
 the documentation.
 
 Click File -> Open in jEdit, and select `krislet.mas2j`. Then, click the green
-play button in the to the top right of the Jason console.
+play button in the top right of the Jason console.
