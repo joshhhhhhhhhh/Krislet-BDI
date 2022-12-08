@@ -38,7 +38,10 @@ williamtran5@cmail.carleton.ca}
 \maketitle
 
 \begin{abstract}
-Abstract
+(J.B.) Jason is a popular AgentSpeak framework used to build and execute BDI-based agents.
+In particular, we have looked into its use in developing software agents for RoboCup, an international soccer framework where the competitors are agents.
+The goal of the project and this paper was to explore how to use Jason to create these agents, not necessarily to create optimized agents.
+For this purpose we created three agents with different goals, desires, and movement patterns, to showcase how different agents acting individually would operate together.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -53,6 +56,10 @@ Introduction goes here. Example citation~\cite{b1}.
 
 \section{Agents}
 \subsection{Offensive agent (J.B.)}
+The offensive agent utilizes predicates in order to perceive the ball, enemy goal and self goal.
+Using the predicate for the ball, there are rules to see of the agent is facing the ball or at the ball are used.
+There are sub-goals, with the initial sub-goal being to find the ball.
+These sub-goals are what the agent desires, and then the intention of its actions are chosen from these desires.
 The main goal of an offensive agent is to score a goal.
 In order to achieve this, the offensive agent which was implemented follows a simple pattern: first it finds the ball, then it runs to the ball, then it finds the goal, and finally it kicks the ball to the goal.
 This is a very simple implementation, as the design goal of the agent was to prove the usability of Jason's BDI framework rather than making an optimized agent.
