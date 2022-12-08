@@ -6,6 +6,7 @@
 
 package krislet;
 
+import java.util.Collections;
 import java.util.Vector;
 
 public class Memory
@@ -52,10 +53,18 @@ public class Memory
     }
 
 	public Vector<?> getFlagList() {
+		if (info == null) {
+			return new Vector<>();
+		}
+
 		return info.getFlagList();
 	}
 
 	public Vector<?> getPlayerList() {
+		if (info == null) {
+			return new Vector<>();
+		}
+
 		return info.getPlayerList();
 	}
 
