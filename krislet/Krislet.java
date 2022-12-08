@@ -66,6 +66,7 @@ public class Krislet implements Runnable
 		parseInitCommand(new String(buffer));
 		m_port = packet.getPort();
 
+		// If play mode is before kick-off on start, randomize the player placement
 		if (Pattern.matches("^before_kick_off.*", this.playMode)) {
 			this.move(30, 30);
 		}

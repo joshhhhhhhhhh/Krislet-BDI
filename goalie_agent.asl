@@ -26,14 +26,14 @@ atNet :- selfGoal(DIR, DIST) & DIST < 3.0.
 +!findBall : ~ball <- turn(15); !findBall.
 +!findBall : ball(DIR, DIST) <- turn(DIR); !goToBall.
 
-// Go to the ball; if ball not seen, find it; if ball is "close", move towards; if at ball, find enemy goal
+// Go to the ball; if ball not seen, find it; if ball is "close", move towards; if at ball, perform an action with the ball
 +!goToBall : ~ball <- !findBall.
-+!goToBall : ball(DIR,DIST) & atBall <- !findEnemyGoal.
++!goToBall : ball(DIR,DIST) & atBall <- !actOnBall.
 +!goToBall : ball(DIR,DIST) & ballClose <- turn(DIR); dash(100); !!goToBall.
 +!goToBall : ball(DIR,DIST) <- !!goToBall.
 
-// Find enemy goal and kick towards
-+!findEnemyGoal : furthestTeammate(DIR, DIS) & ~selfGoal <- kick(100, DIR); !findSelfGoal.
-+!findEnemyGoal : enemyGoal(DIR, DIS) <- kick(100, DIR); !findSelfGoal.
-+!findEnemyGoal : ~enemyGoal & selfGoal(X, Y) <- kick(100, 180); !findSelfGoal.
-+!findEnemyGoal : true <- turn(15); !!findEnemyGoal.
+// Perform an action with the ball
++!actOnBall : furthestTeammate(DIR, DIS) & ~selfGoal <- kick(100, DIR); !findSelfGoal.
++!actOnBall : enemyGoal(DIR, DIS) <- kick(100, DIR); !findSelfGoal.
++!actOnBall : ~enemyGoal & selfGoal(X, Y) <- kick(100, 180); !findSelfGoal.
++!actOnBall : true <- turn(15); !!actOnBall.
